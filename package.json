@@ -1,0 +1,29 @@
+{
+  "name": "lambdascheduler",
+  "version": "1.0.0",
+  "description": "LambdaScheduler simplifies task scheduling in AWS. Utilizing Gateway API and Lambda Functions, it provides a modern, scalable solution to replace cronjobs, ensuring efficient, user-friendly automation of periodic tasks.",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "npx serverless deploy",
+    "remove": "npx serverless remove"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gildors/LambdaScheduler"
+  },
+  "keywords": [
+    "serverless",
+    "lambda function",
+    "aws"
+  ],
+  "author": "Gildo Rodrigues",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gildors/LambdaScheduler/issues"
+  },
+  "homepage": "https://github.com/gildors/LambdaScheduler#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1547.0",
+    "axios": "^1.6.7"
+  }
+}

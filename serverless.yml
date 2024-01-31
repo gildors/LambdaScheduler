@@ -1,0 +1,20 @@
+service: lambdascheduler
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+      Resource: "arn:aws:dynamodb:us-east-1:201966102763:table/customers-dev"
+
+functions:
+  action:
+    handler: handler.action
+    events:
+      - http:
+          path: /action
+          method: get
