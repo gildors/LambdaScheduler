@@ -23,38 +23,44 @@ module.exports.action = async (event) => {
     };
 
     const { Items: customers } = await dynamoDB.scan(params).promise();
-    const customer = customers.find((item) => item.Name === customerName);
 
-    if (!customer) {
-      throw new Error(`Customer ${customerName} not found.`);
+    if (!customers) {
+      throw new Error(`Customers not found.`);
     }
 
-    const loginResponse = await axios.post(loginUrl, credentials, {
-      headers: {
-        Customer: customer.Id,
-      },
-    });
+    customers.forEach(async (customer) => {
+      if (!customer) {
+        throw new Error(`Customer ${customerName} not found.`);
+      }
 
-    if (loginResponse.status === 200) {
-      const accessToken = loginResponse.data.data.accessToken;
-      const actionResponse = await axios.get(actionUrl, {
+      const loginResponse = await axios.post(loginUrl, credentials, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
           Customer: customer.Id,
         },
       });
 
-      if (actionResponse.status === 200) {
-        return {
-          statusCode: 200,
-          data: `successfully! action: ${action} customer: ${customerName}`,
-        };
+      if (loginResponse.status === 200) {
+        const accessToken = loginResponse.data.data.accessToken;
+        const actionResponse = await axios.get(actionUrl, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            Customer: customer.Id,
+          },
+        });
+
+        if (actionResponse.status != 200) {
+          throw new Error(
+            `Action error status: ${actionResponse.status}, customer ${customer.Name}`
+          );
+        }
       } else {
-        throw new Error(`Action error status: ${actionResponse.status}`);
+        throw new Error(`Login error status: ${loginResponse.status}`);
       }
-    } else {
-      throw new Error(`Login error status: ${loginResponse.status}`);
-    }
+    });
+    return {
+      statusCode: 200,
+      data: `successfully! action: ${action}`,
+    };
   } catch (error) {
     return {
       statusCode: 500,
