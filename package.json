@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/gildors/LambdaScheduler#readme",
   "dependencies": {
-    "aws-sdk": "^2.1547.0",
     "axios": "^1.6.7"
   }
 }
