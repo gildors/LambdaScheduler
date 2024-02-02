@@ -5,7 +5,8 @@
   "main": "handler.js",
   "scripts": {
     "deploy": "npx serverless deploy",
-    "remove": "npx serverless remove"
+    "remove": "npx serverless remove",
+    "notificationsTest": "npx serverless invoke --function action --path events\\notificationTest.json --log"
   },
   "repository": {
     "type": "git",

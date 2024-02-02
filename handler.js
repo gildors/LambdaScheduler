@@ -3,7 +3,6 @@
 const axios = require("axios");
 const aws = require("aws-sdk");
 
-const dynamoDB = new aws.DynamoDB.DocumentClient();
 const baseUrl = "https://devapi.locxre.com/api";
 const tableName = "customers-dev";
 
@@ -11,6 +10,8 @@ const credentials = {
   email: "administrador@locximoveis.com.br",
   password: "TiAdm@D20M01A24*#!",
 };
+
+const dynamoDB = new aws.DynamoDB.DocumentClient();
 
 const login = async (customer, loginUrl) => {
   try {

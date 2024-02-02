@@ -1,0 +1,18 @@
+{
+    "action": "notifications/process",
+    "ignoreList": [
+      "demo",
+      "roldao",
+      "bffc",
+      "dasa",
+      "localhost",
+      "hstern",
+      "labi",
+      "locx",
+      "test",
+      "disantinni",
+      "grupoguanabara",
+      "loggi",
+      "gov"
+    ]
+  }
