@@ -6,7 +6,7 @@
   "scripts": {
     "deploy": "npx serverless deploy",
     "remove": "npx serverless remove",
-    "notificationsTest": "npx serverless invoke --function action --path events\\notificationTest.json --log"
+    "notificationsTest": "npx serverless invoke --function action --path events\\notificationsTest.json --log"
   },
   "repository": {
     "type": "git",

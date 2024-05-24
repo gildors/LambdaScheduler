@@ -8,7 +8,7 @@ const tableName = "customers-dev";
 
 const credentials = {
   email: "administrador@locximoveis.com.br",
-  password: "TiAdm@D20M01A24*#!",
+  password: "TiAdm@D08M03A24*#!",
 };
 
 const dynamoDB = new aws.DynamoDB.DocumentClient();
@@ -73,6 +73,7 @@ module.exports.action = async (event) => {
           }
 
           const accessToken = await login(customer, loginUrl);
+
           if (accessToken)
             await performAction(customer, actionUrl, accessToken);
         } catch (error) {
